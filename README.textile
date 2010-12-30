@@ -34,11 +34,11 @@ Check it out in extras-devel
 
 h3. Debian .deb
 
-Download and install https://github.com/epage/omnom/blob/master/www/omnom.deb
+"Download and install":https://github.com/epage/omnom/blob/master/www/omnom.deb
 
 h3. Tarball
 
-Extract the the tarball to a folder, "cd" to that folder and then
+Extract the the "tarball":https://github.com/epage/omnom/tarball/master to a folder, "cd" to that folder and then
 as root:
 mkdir /home/opt/python/
 cp -r omnom /home/opt/python/
@@ -70,5 +70,5 @@ bug reports, suggestions, hate mail etc :)
 Luke Thomas
 frummage@yahoo.co.uk
 PM me at talk.maemo.org (FRuMMaGe)
-http://talk.maemo.org/showthread.php?t=67508
-http://maemo.org/packages/view/omnom/
+"t.m.o Tread":http://talk.maemo.org/showthread.php?t=67508
+"maemo.org Package Page":http://maemo.org/packages/view/omnom/
