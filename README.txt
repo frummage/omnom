@@ -10,6 +10,7 @@ Contact Information:
 Luke Thomas
 frummage@yahoo.co.uk
 PM me at talk.maemo.org (FRuMMaGe)
+http://talk.maemo.org/showthread.php?t=67508
 
 Info:
 This software (including graphics) was made by me using
