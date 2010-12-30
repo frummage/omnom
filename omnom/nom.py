@@ -509,7 +509,7 @@ class MyForm(QtGui.QMainWindow):
 class setConfig(QtGui.QMainWindow):
 
 	def __init__(self, *args):
-		QtGui.QMainWindow.__init__(self, args)
+		QtGui.QMainWindow.__init__(*((self, )+args))
 		self.ui = nomconfig.Ui_MainWindow()
 		self.ui.setupUi(self)
 		self.setWindowTitle("Config")
