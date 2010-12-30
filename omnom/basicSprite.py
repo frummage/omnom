@@ -1,8 +1,12 @@
 #!/usr/bin/env python
 
+import logging
 import pygame
 
 import helpers
+
+
+_moduleLogger = logging.getLogger(__name__)
 
 
 class Sprite(pygame.sprite.Sprite):

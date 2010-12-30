@@ -9,7 +9,11 @@
 #
 # WARNING! All changes made in this file will be lost!
 
+import logging
 from PyQt4 import QtCore, QtGui
+
+
+_moduleLogger = logging.getLogger(__name__)
 
 
 class Ui_GUI(object):

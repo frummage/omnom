@@ -1,9 +1,13 @@
 #!/usr/bin/env python
 
 import sys
+import logging
 from PyQt4 import QtGui, QtCore
 
 import omnomgui
+
+
+_moduleLogger = logging.getLogger(__name__)
 
 
 class MyForm(QtGui.QMainWindow):

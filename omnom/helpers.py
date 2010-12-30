@@ -1,7 +1,11 @@
 #! /usr/bin/env python
 
 import os
+import logging
 import pygame
+
+
+_moduleLogger = logging.getLogger(__name__)
 
 
 def load_image(name, colorkey=None):
@@ -10,7 +14,7 @@ def load_image(name, colorkey=None):
 	try:
 		image = pygame.image.load(fullname)
 	except pygame.error, message:
-		print 'Cannot load image:', fullname
+		_moduleLogger.exception("Cannot load image "+fullname)
 		raise SystemExit, message
 	image = image.convert()
 	if colorkey is not None:

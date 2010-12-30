@@ -1,10 +1,14 @@
 #!/usr/bin/env python
 
-import pygame
 import random
+import logging
+import pygame
 
 import basicSprite
 import config
+
+
+_moduleLogger = logging.getLogger(__name__)
 
 
 isEvil = False

@@ -1,7 +1,12 @@
 #!/usr/bin/env python
 
-import os, sys
+import os
+import sys
+import logging
 import pygame
+from PyQt4 import QtGui, QtCore
+
+import constants
 import level001
 import level002
 import level003
@@ -20,12 +25,14 @@ import level015
 import continueScrn
 import config
 import basicSprite
-from PyQt4 import QtGui, QtCore
 import omnomgui
 import nomconfig
 import greenManSprite
 import purpleManSprite
 import basicMonster
+
+
+_moduleLogger = logging.getLogger(__name__)
 
 
 global levelselect
@@ -563,8 +570,25 @@ class setConfig(QtGui.QMainWindow):
 		config.lives = self.ui.playerLives.value()
 
 
-if __name__ == "__main__":
+def run():
 	app = QtGui.QApplication(sys.argv)
 	myapp = MyForm()
 	myapp.show()
 	sys.exit(app.exec_())
+
+
+if __name__ == "__main__":
+	try:
+		os.makedirs(constants._data_path_)
+	except OSError, e:
+		if e.errno != 17:
+			raise
+
+	logFormat = '(%(relativeCreated)5d) %(levelname)-5s %(threadName)s.%(name)s.%(funcName)s: %(message)s'
+	logging.basicConfig(level=logging.DEBUG, filename=constants._user_logpath_, format=logFormat)
+	_moduleLogger.info("%s %s-%s" % (constants.__app_name__, constants.__version__, constants.__build__))
+	_moduleLogger.info("OS: %s" % (os.uname()[0], ))
+	_moduleLogger.info("Kernel: %s (%s) for %s" % os.uname()[2:])
+	_moduleLogger.info("Hostname: %s" % os.uname()[1])
+
+	run()

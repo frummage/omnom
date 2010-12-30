@@ -1,8 +1,12 @@
 #!/usr/bin/env python
 
+import logging
 import pygame
 
 import basicSprite
+
+
+_moduleLogger = logging.getLogger(__name__)
 
 
 SUPER_STATE_START = pygame.USEREVENT + 1
