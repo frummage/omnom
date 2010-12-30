@@ -1,12 +1,14 @@
 #!/usr/bin/env python
 
 import pygame
+
 import basicSprite
-from helpers import *
+
 
 SUPER_STATE_START = pygame.USEREVENT + 1
 SUPER_STATE_OVER = SUPER_STATE_START + 1
 PLAYER_EATEN = SUPER_STATE_OVER + 1
+
 
 class greenMan(basicSprite.Sprite):
 	def __init__(self, centerPoint, image):
@@ -19,23 +21,23 @@ class greenMan(basicSprite.Sprite):
 		self.superState = False
 
 	def MoveKeyDown(self, key):
-		if (key == K_RIGHT):
+		if (key == pygame.locals.K_RIGHT):
 			self.xMove += self.x_dist
-		elif (key == K_LEFT):
+		elif (key == pygame.locals.K_LEFT):
 			self.xMove += -self.x_dist
-		elif (key == K_UP):
+		elif (key == pygame.locals.K_UP):
 			self.yMove += -self.y_dist
-		elif (key == K_DOWN):
+		elif (key == pygame.locals.K_DOWN):
 			self.yMove += self.y_dist
 
 	def MoveKeyUp(self, key):
-		if (key == K_RIGHT):
+		if (key == pygame.locals.K_RIGHT):
 			self.xMove += -self.x_dist
-		elif (key == K_LEFT):
+		elif (key == pygame.locals.K_LEFT):
 			self.xMove += self.x_dist
-		elif (key == K_UP):
+		elif (key == pygame.locals.K_UP):
 			self.yMove += self.y_dist
-		elif (key == K_DOWN):
+		elif (key == pygame.locals.K_DOWN):
 			self.yMove += -self.y_dist
 
 	def update(self, block_group, pellet_group, super_pellet_group, monster_group):

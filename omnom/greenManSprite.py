@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 
 import pygame
+
 import basicSprite
 import config
 import helpers
+
 
 SUPER_STATE_START = pygame.USEREVENT + 1
 SUPER_STATE_OVER = SUPER_STATE_START + 1
@@ -11,8 +13,13 @@ PLAYER_EATEN = SUPER_STATE_OVER + 1
 #BITE = pygame.USEREVENT + 1
 #KILL = pygame.USEREVENT + 1
 #SUPER = pygame.USEREVENT + 1
+biteSound = None
+superSound = None
+killSound = None
+
 
 class greenMan(basicSprite.Sprite):
+
 	def __init__(self, centerPoint, image):
 		basicSprite.Sprite.__init__(self, centerPoint, image)
 		#nom.gameMusic
@@ -79,20 +86,20 @@ class greenMan(basicSprite.Sprite):
 			if self.hdirect == 1:
 				self.image = pygame.transform.rotate(self.image, 90)
 			if self.hdirect == 2:
-					self.image = pygame.transform.rotate(self.image, -90)
+				self.image = pygame.transform.rotate(self.image, -90)
 
 	def MoveKeyDown(self, key):
-		if (key == K_RIGHT):
+		if (key == pygame.locals.K_RIGHT):
 			self.xMove += self.x_dist
 			if self.hdirect == 1:
 				self.image = pygame.transform.flip(self.image, 1, 0)
 				self.hdirect = 2
-		elif (key == K_LEFT):
+		elif (key == pygame.locals.K_LEFT):
 			self.xMove += -self.x_dist
 			if self.hdirect == 2:
 				self.image = pygame.transform.flip(self.image, 1, 0)
 				self.hdirect = 1
-		elif (key == K_UP):
+		elif (key == pygame.locals.K_UP):
 			self.yMove += -self.y_dist
 			if self.vdirect == 0:
 				if self.hdirect == 2:
@@ -100,7 +107,7 @@ class greenMan(basicSprite.Sprite):
 				if self.hdirect == 1:
 					self.image = pygame.transform.rotate(self.image, -90)
 			self.vdirect = 2
-		elif (key == K_DOWN):
+		elif (key == pygame.locals.K_DOWN):
 			self.yMove += self.y_dist
 			if self.vdirect == 0:
 				if self.hdirect == 2:
@@ -114,18 +121,18 @@ class greenMan(basicSprite.Sprite):
 		if self.openclosed == 2:
 			self.image = self.normal_image
 			self.OpenAndClose()
-		if (key == K_RIGHT):
+		if (key == pygame.locals.K_RIGHT):
 			self.xMove += -self.x_dist
-		elif (key == K_LEFT):
+		elif (key == pygame.locals.K_LEFT):
 			self.xMove += self.x_dist
-		elif (key == K_UP):
+		elif (key == pygame.locals.K_UP):
 			self.yMove += self.y_dist
 			if self.hdirect == 2:
 				self.image = pygame.transform.rotate(self.image, -90)
 			if self.hdirect == 1:
 				self.image = pygame.transform.rotate(self.image, 90)
 			self.vdirect = 0
-		elif (key == K_DOWN):
+		elif (key == pygame.locals.K_DOWN):
 			self.yMove += -self.y_dist
 			if self.hdirect == 2:
 				self.image = pygame.transform.rotate(self.image, 90)

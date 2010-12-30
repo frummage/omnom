@@ -22,9 +22,6 @@ import config
 import basicSprite
 from PyQt4 import QtGui, QtCore
 import omnomgui
-import nomconfig
-import pygame
-import helpers
 import greenManSprite
 import purpleManSprite
 import basicMonster
@@ -45,6 +42,7 @@ levelselect = 0
 
 
 class nomMain(object):
+
 	def __init__(self , width=800, height=480):
 		pygame.mixer.pre_init(44100, -16, 1, 256)
 		pygame.init()
@@ -478,7 +476,9 @@ class nomMain(object):
 		if config.players == 2:
 			self.purpleMan_sprites = pygame.sprite.RenderUpdates(self.purpleMan)
 
+
 class MyForm(QtGui.QMainWindow):
+
 	def __init__(self, parent=None):
 		QtGui.QWidget.__init__(self, parent)
 		self.ui = omnomgui.Ui_GUI()
@@ -531,7 +531,9 @@ class MyForm(QtGui.QMainWindow):
 		confwindow = setConfig(self)
 		confwindow.show()
 
+
 class setConfig(QtGui.QMainWindow):
+
 	def __init__(self, *args):
 		QtGui.QMainWindow.__init__(self, args)
 		self.ui = omnomgui.Ui_MainWindow()
@@ -558,6 +560,7 @@ class setConfig(QtGui.QMainWindow):
 		config.player_speed = self.ui.playerSpeed.value()
 		config.enemy_speed = self.ui.enemySpeed.value()
 		config.lives = self.ui.playerLives.value()
+
 
 if __name__ == "__main__":
 	app = QtGui.QApplication(sys.argv)

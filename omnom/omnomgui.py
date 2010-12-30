@@ -11,7 +11,9 @@
 
 from PyQt4 import QtCore, QtGui
 
+
 class Ui_GUI(object):
+
 	def setupUi(self, GUI):
 		GUI.setObjectName("GUI")
 		GUI.resize(800, 480)

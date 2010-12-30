@@ -2,12 +2,15 @@
 
 import sys
 from PyQt4 import QtGui, QtCore
-from omnomgui import *
+
+import omnomgui
+
 
 class MyForm(QtGui.QMainWindow):
+
 	def __init__(self, parent=None):
 		QtGui.QWidget.__init__(self, parent)
-		self.ui = Ui_GUI()
+		self.ui = omnomgui.Ui_GUI()
 		self.ui.setupUi(self)
 		self.setWindowTitle("OmNomNom")
 		lvl1 = QtGui.QPixmap("data/images/lvl1.png")
@@ -35,7 +38,8 @@ class MyForm(QtGui.QMainWindow):
 		
 	def doLvl4(self):
 		pass
-		
+
+
 if __name__ == "__main__":
 	app = QtGui.QApplication(sys.argv)
 	myapp = MyForm()

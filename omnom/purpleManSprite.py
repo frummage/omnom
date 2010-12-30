@@ -2,9 +2,10 @@
 
 import pygame
 import basicSprite
-import nom
 import config
-from helpers import *
+
+import helpers
+
 
 SUPER_STATE_START = pygame.USEREVENT + 1
 SUPER_STATE_OVER = SUPER_STATE_START + 1
@@ -13,7 +14,13 @@ PLAYER_EATEN = SUPER_STATE_OVER + 1
 #KILL = pygame.USEREVENT + 1
 #SUPER = pygame.USEREVENT + 1
 
+biteSound = None
+superSound = None
+killSound = None
+
+
 class purpleMan(basicSprite.Sprite):
+
 	def __init__(self, centerPoint, image):
 		basicSprite.Sprite.__init__(self, centerPoint, image)
 		#nom.gameMusic
@@ -25,11 +32,11 @@ class purpleMan(basicSprite.Sprite):
 		self.openclosed = 1
 		self.normal_image = self.image
 		if config.mariomode == 1:
-			self.closed, rect = load_image('luigiClosed.png', -1)
+			self.closed, rect = helpers.load_image('luigiClosed.png', -1)
 		elif config.paper == 1:
-			self.closed, rect = load_image('purplePaperClosed.png', -1)
+			self.closed, rect = helpers.load_image('purplePaperClosed.png', -1)
 		else:
-			self.closed, rect = load_image('purpleClosedRight.png', -1)
+			self.closed, rect = helpers.load_image('purpleClosedRight.png', -1)
 		self.rect.inflate_ip(-6, -6)
 		self.original_rect = pygame.Rect(self.rect)
 		#self.rect.center = (100, 160)
@@ -82,17 +89,17 @@ class purpleMan(basicSprite.Sprite):
 					self.image = pygame.transform.rotate(self.image, -90)
 
 	def MoveKeyDown(self, key):
-		if (key == K_x):
+		if (key == pygame.locals.K_x):
 			self.xMove += self.x_dist
 			if self.hdirect == 1:
 				self.image = pygame.transform.flip(self.image, 1, 0)
 				self.hdirect = 2
-		elif (key == K_a):
+		elif (key == pygame.locals.K_a):
 			self.xMove += -self.x_dist
 			if self.hdirect == 2:
 				self.image = pygame.transform.flip(self.image, 1, 0)
 				self.hdirect = 1
-		elif (key == K_s):
+		elif (key == pygame.locals.K_s):
 			self.yMove += -self.y_dist
 			if self.vdirect == 0:
 				if self.hdirect == 2:
@@ -100,7 +107,7 @@ class purpleMan(basicSprite.Sprite):
 				if self.hdirect == 1:
 					self.image = pygame.transform.rotate(self.image, -90)
 			self.vdirect = 2
-		elif (key == K_z):
+		elif (key == pygame.locals.K_z):
 			self.yMove += self.y_dist
 			if self.vdirect == 0:
 				if self.hdirect == 2:
@@ -114,18 +121,18 @@ class purpleMan(basicSprite.Sprite):
 		if self.openclosed == 2:
 			self.image = self.normal_image
 			self.OpenAndClose()
-		if (key == K_x):
+		if (key == pygame.locals.K_x):
 			self.xMove += -self.x_dist
-		elif (key == K_a):
+		elif (key == pygame.locals.K_a):
 			self.xMove += self.x_dist
-		elif (key == K_s):
+		elif (key == pygame.locals.K_s):
 			self.yMove += self.y_dist
 			if self.hdirect == 2:
 				self.image = pygame.transform.rotate(self.image, -90)
 			if self.hdirect == 1:
 				self.image = pygame.transform.rotate(self.image, 90)
 			self.vdirect = 0
-		elif (key == K_z):
+		elif (key == pygame.locals.K_z):
 			self.yMove += -self.y_dist
 			if self.hdirect == 2:
 				self.image = pygame.transform.rotate(self.image, 90)
