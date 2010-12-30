@@ -21,8 +21,8 @@ __email__ = "frummage@yahoo.co.uk"
 __version__ = constants.__version__
 __build__ = constants.__build__
 __changelog__ = """
-* Made levels more data-driven
-* Fixed some breaking packaging bugs
+* Fixing the level advancement
+* Fixing the settings window
 """.strip()
 
 
