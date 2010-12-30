@@ -1,15 +1,14 @@
 #!/usr/bin/env python
 
 import sys
-import os
 from PyQt4 import QtGui,QtCore
 from omnomgui import *
 
 class MyForm(QtGui.QMainWindow):
-        def __init__(self, parent=None):
-                QtGui.QWidget.__init__(self, parent)
-                self.ui = Ui_GUI()
-                self.ui.setupUi(self)
+	def __init__(self, parent=None):
+		QtGui.QWidget.__init__(self, parent)
+		self.ui = Ui_GUI()
+		self.ui.setupUi(self)
 		self.setWindowTitle("OmNomNom")
 		lvl1 = QtGui.QPixmap("data/images/lvl1.png")
 		lvl2 = QtGui.QPixmap("data/images/lvl2.png")
@@ -26,15 +25,19 @@ class MyForm(QtGui.QMainWindow):
 		QtCore.QObject.connect(self.ui.lvl4Button, QtCore.SIGNAL('clicked()'), self.doLvl4)
 
 	def doLvl1(self):
+		pass
 		
 	def doLvl2(self):
+		pass
 		
 	def doLvl3(self):
+		pass
 		
 	def doLvl4(self):
+		pass
 		
 if __name__ == "__main__":
-        app = QtGui.QApplication(sys.argv)
-        myapp = MyForm()
-        myapp.show()
-        sys.exit(app.exec_())
+	app = QtGui.QApplication(sys.argv)
+	myapp = MyForm()
+	myapp.show()
+	sys.exit(app.exec_())

@@ -39,6 +39,7 @@ if not pygame.mixer:
 BLOCK_SIZE = 32
 fps = 30
 clock = pygame.time.Clock()
+levelselect = 0
 
 class nomMain():
 	def __init__(self , width=800,height=480):
@@ -120,7 +121,6 @@ class nomMain():
 					config.purpleScore = config.purpleScore+self.purpleMan.pellets
 					#config.greenHits = config.greenHits+self.greenMan.hits
 					#config.purpleHits = config.purpleHits+self.purpleMan.hits
-					global levelselect
 					levelselect = levelselect+1
 					if levelselect == 16:
 						#levelselect = 1
@@ -137,7 +137,6 @@ class nomMain():
 				#while self.greenMan.pellets == self.level1.pelletcount:
 				while self.greenMan.pellets == self.total:
 					config.greenScore = config.greenScore+self.greenMan.pellets
-					global levelselect
 					levelselect = levelselect+1
 					if levelselect == 16:
 						#pygame.quit()
@@ -237,12 +236,12 @@ class nomMain():
 					if levelselect == 100:
 						text = font.render("Continue?", 1, (255, 255, 255))
 					else:
-						text = font.render("Green %s        Lives %s          Level %s           Purple %s " % (self.greenMan.pellets, config.deathCount, levelselect, self.purpleMan.pellets), 1, (255, 255, 255))
+						text = font.render("Green %s		Lives %s		  Level %s		   Purple %s " % (self.greenMan.pellets, config.deathCount, levelselect, self.purpleMan.pellets), 1, (255, 255, 255))
 				else:
 					if levelselect == 100:
 						text = font.render("Continue?", 1, (255, 255, 255))
 					else:
-						text = font.render("Pellets %s      Lives %s       Level %s" % (self.greenMan.pellets, config.deathCount, levelselect), 1, (255, 255, 255))
+						text = font.render("Pellets %s	  Lives %s	   Level %s" % (self.greenMan.pellets, config.deathCount, levelselect), 1, (255, 255, 255))
 				textpos = text.get_rect(centerx=self.background.get_width()/2)
 				self.screen.blit(text, textpos)
 				#pnumber = str(self.greenMan.pellets)
@@ -272,7 +271,7 @@ class nomMain():
 			background = pygame.image.load(os.path.join('data/images', '1pbg.png'))
 		font = pygame.font.Font(None, 36)
 		if config.players == 2:
-			text = font.render("Green                                Purple", 1, (255, 255, 255))
+			text = font.render("Green								Purple", 1, (255, 255, 255))
 			textpos = text.get_rect()
 			textpos.centerx = background.get_rect().centerx
 			textpos.centery = background.get_rect().centery-100
@@ -531,10 +530,10 @@ class MyForm(QtGui.QMainWindow):
 
 class setConfig(QtGui.QMainWindow):
 	def __init__(self, *args):
-		apply(QtGui.QMainWindow.__init__, (self, ) + args)
-                self.ui = Ui_MainWindow()
-                self.ui.setupUi(self)
-                self.setWindowTitle("Config")
+		QtGui.QMainWindow.__init__(self, args)
+		self.ui = Ui_MainWindow()
+		self.ui.setupUi(self)
+		self.setWindowTitle("Config")
 
 		QtCore.QObject.connect(self.ui.applyButton, QtCore.SIGNAL('clicked()'), self.doApply)
 
@@ -562,9 +561,3 @@ if __name__ == "__main__":
 	myapp = MyForm()
 	myapp.show()
 	sys.exit(app.exec_())
-
-#if __name__ == "__main__":
-#	MainWindow = nomMain()
-#	MainWindow.MainLoop()
-# sudo cp MyDocs/Scripts/python/omnom/nom.py /home/opt/python/omnom/nom.py 
-
