@@ -259,7 +259,7 @@ class nomMain(object):
 		if config.players == 2:
 			background = pygame.image.load(os.path.join(DATA_FOLDER, 'images', '2pbg.png'))
 		else:
-			background = pygame.image.load(os.path.join(DATA_FOLDER, 'data/images', '1pbg.png'))
+			background = pygame.image.load(os.path.join(DATA_FOLDER, 'images', '1pbg.png'))
 		font = pygame.font.Font(None, 36)
 		if config.players == 2:
 			text = font.render("Green								Purple", 1, (255, 255, 255))
