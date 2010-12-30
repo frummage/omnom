@@ -2,9 +2,8 @@
 
 import pygame
 import basicSprite
-import nom
 import config
-from helpers import *
+import helpers
 
 SUPER_STATE_START = pygame.USEREVENT + 1
 SUPER_STATE_OVER = SUPER_STATE_START + 1
@@ -25,11 +24,11 @@ class greenMan(basicSprite.Sprite):
 		self.openclosed = 1
 		self.normal_image = self.image
 		if config.mariomode == 1:
-			self.closed, rect = load_image('marioClosed.png', -1)
+			self.closed, rect = helpers.load_image('marioClosed.png', -1)
 		elif config.paper == 1:
-			self.closed, rect = load_image('greenPaperClosed.png', -1)
+			self.closed, rect = helpers.load_image('greenPaperClosed.png', -1)
 		else:
-			self.closed, rect = load_image('charClosedRight.png', -1)
+			self.closed, rect = helpers.load_image('charClosedRight.png', -1)
 		self.rect.inflate_ip(-6, -6)
 		self.original_rect = pygame.Rect(self.rect)
 		#self.rect.center = (100, 160)

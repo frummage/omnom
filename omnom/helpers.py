@@ -1,8 +1,8 @@
 #! /usr/bin/env python
 
-import os, sys
+import os
 import pygame
-from pygame.locals import *
+from pygame.locals import RLEACCEL
 
 def load_image(name, colorkey=None):
 	fullname = os.path.join('data', 'images')

@@ -21,13 +21,14 @@ import continueScrn
 import config
 import basicSprite
 from PyQt4 import QtGui, QtCore
-from omnomgui import *
-from nomconfig import *
-from pygame.locals import *
-from helpers import *
-from greenManSprite import *
-from purpleManSprite import *
-from basicMonster import Monster
+import omnomgui
+import nomconfig
+import pygame
+import helpers
+import greenManSprite
+import purpleManSprite
+import basicMonster
+
 
 global levelselect
 # Warn if soundrr or fonts are disabled
@@ -36,12 +37,14 @@ if not pygame.font:
 if not pygame.mixer:
 	print 'Warning, sound disabled'
 
+
 BLOCK_SIZE = 32
 fps = 30
 clock = pygame.time.Clock()
 levelselect = 0
 
-class nomMain():
+
+class nomMain(object):
 	def __init__(self , width=800, height=480):
 		pygame.mixer.pre_init(44100, -16, 1, 256)
 		pygame.init()
@@ -58,7 +61,7 @@ class nomMain():
 		#	pygame.mixer.music.play(-1, 0)
 		self.width = width
 		self.height = height
-		self.screen = pygame.display.set_mode((self.width, self.height), FULLSCREEN)
+		self.screen = pygame.display.set_mode((self.width, self.height), pygame.locals.FULLSCREEN)
 
 	def MainLoop(self):
 		global levelselect
@@ -158,50 +161,50 @@ class nomMain():
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
 					sys.exit()
-				elif event.type == KEYDOWN:
-					if ((event.key == K_RIGHT)
-					or (event.key == K_LEFT)
-					or (event.key == K_UP)
-					or (event.key == K_DOWN)):
+				elif event.type == pygame.locals.KEYDOWN:
+					if ((event.key == pygame.locals.K_RIGHT)
+					or (event.key == pygame.locals.K_LEFT)
+					or (event.key == pygame.locals.K_UP)
+					or (event.key == pygame.locals.K_DOWN)):
 						self.greenMan.MoveKeyDown(event.key)
-					if ((event.key == K_x)
-					or (event.key == K_a)
-					or (event.key == K_s)
-					or (event.key == K_z)):
+					if ((event.key == pygame.locals.K_x)
+					or (event.key == pygame.locals.K_a)
+					or (event.key == pygame.locals.K_s)
+					or (event.key == pygame.locals.K_z)):
 						if config.players == 2:
 							self.purpleMan.MoveKeyDown(event.key)
-					if event.key == K_p:
+					if event.key == pygame.locals.K_p:
 						pygame.image.save(self.screen, '/home/user/MyDocs/omnom/screenshot.png')
-					if event.key == K_BACKSPACE:
+					if event.key == pygame.locals.K_BACKSPACE:
 						pygame.quit()
 						loadGui = sys.executable
 						os.execl(loadGui, loadGui, * sys.argv)
-					if event.key == K_SPACE:
+					if event.key == pygame.locals.K_SPACE:
 						pygame.quit()
 						nomMain().MainLoop()
-				elif event.type == KEYUP:
-					if ((event.key == K_RIGHT)
-					or (event.key == K_LEFT)
-					or (event.key == K_UP)
-					or (event.key == K_DOWN)):
+				elif event.type == pygame.locals.KEYUP:
+					if ((event.key == pygame.locals.K_RIGHT)
+					or (event.key == pygame.locals.K_LEFT)
+					or (event.key == pygame.locals.K_UP)
+					or (event.key == pygame.locals.K_DOWN)):
 						self.greenMan.MoveKeyUp(event.key)
-					if ((event.key == K_x)
-					or (event.key == K_a)
-					or (event.key == K_s)
-					or (event.key == K_z)):
+					if ((event.key == pygame.locals.K_x)
+					or (event.key == pygame.locals.K_a)
+					or (event.key == pygame.locals.K_s)
+					or (event.key == pygame.locals.K_z)):
 						if config.players == 2:
 							self.purpleMan.MoveKeyUp(event.key)
-				elif event.type == SUPER_STATE_OVER:
+				elif event.type == pygame.locals.SUPER_STATE_OVER:
 					self.greenMan.superState = False
 					if config.players == 2:
 						self.purpleMan.superState = False
-					pygame.time.set_timer(SUPER_STATE_OVER, 0)
+					pygame.time.set_timer(pygame.locals.SUPER_STATE_OVER, 0)
 					for monster in self.monster_sprites.sprites():
 						monster.SetScared(False)
-				elif event.type == SUPER_STATE_START:
+				elif event.type == pygame.locals.SUPER_STATE_START:
 					for monster in self.monster_sprites.sprites():
 						monster.SetScared(True)
-				elif event.type == PLAYER_EATEN:
+				elif event.type == pygame.locals.PLAYER_EATEN:
 					if config.players == 2:
 						if ((self.greenMan.lives < 1)
 						and (self.purpleMan.lives < 1)):
@@ -263,7 +266,7 @@ class nomMain():
 	def ShowScores(self):
 		#pygame.init()
 		#pygame.mouse.set_visible(False)
-		screen = pygame.display.set_mode((800, 480), FULLSCREEN)
+		screen = pygame.display.set_mode((800, 480), pygame.locals.FULLSCREEN)
 		background = pygame.Surface(screen.get_size())
 		if config.players == 2:
 			background = pygame.image.load(os.path.join('data/images', '2pbg.png'))
@@ -453,14 +456,14 @@ class nomMain():
 					self.block_sprites.add(block)
 				elif layout[y][x]==self.level1.GREENMAN:
 					# hmmm...
-					self.greenMan = greenMan(centerPoint, img_list[self.level1.GREENMAN]) # , img_list[level1.GREENMANLEFT] , img_list[level1.GREENMANRIGHT])
+					self.greenMan = greenManSprite.greenMan(centerPoint, img_list[self.level1.GREENMAN]) # , img_list[level1.GREENMANLEFT] , img_list[level1.GREENMANRIGHT])
 				elif layout[y][x]==self.level1.PELLET:
 					pellet = basicSprite.Sprite(centerPoint, img_list[self.level1.PELLET])
 					self.pellet_sprites.add(pellet)
 					self.total = self.total+1
 					#pygame.mixer.Sound('data/sounds/bite.wav')
 				elif layout[y][x]==self.level1.MONSTER:
-					monster = Monster(centerPoint, img_list[self.level1.MONSTER], img_list[self.level1.SCARED_MONSTER], img_list[self.level1.EVIL_MONSTER])
+					monster = basicMonster.Monster(centerPoint, img_list[self.level1.MONSTER], img_list[self.level1.SCARED_MONSTER], img_list[self.level1.EVIL_MONSTER])
 					self.monster_sprites.add(monster)
 					#pellet = basicSprite.Sprite(centerPoint, img_list[level1.PELLET])
 					#self.pellet_sprites.add(pellet)
@@ -470,7 +473,7 @@ class nomMain():
 				if config.players == 2:
 					if layout[y][x]==self.level1.PURPLEMAN:
 						# hmmm...
-						self.purpleMan = purpleMan(centerPoint, img_list[self.level1.PURPLEMAN])
+						self.purpleMan = purpleManSprite.purpleMan(centerPoint, img_list[self.level1.PURPLEMAN])
 		self.greenMan_sprites = pygame.sprite.RenderUpdates(self.greenMan)
 		if config.players == 2:
 			self.purpleMan_sprites = pygame.sprite.RenderUpdates(self.purpleMan)
@@ -478,7 +481,7 @@ class nomMain():
 class MyForm(QtGui.QMainWindow):
 	def __init__(self, parent=None):
 		QtGui.QWidget.__init__(self, parent)
-		self.ui = Ui_GUI()
+		self.ui = omnomgui.Ui_GUI()
 		self.ui.setupUi(self)
 		#global gameMusic
 		#global gameSound
@@ -531,7 +534,7 @@ class MyForm(QtGui.QMainWindow):
 class setConfig(QtGui.QMainWindow):
 	def __init__(self, *args):
 		QtGui.QMainWindow.__init__(self, args)
-		self.ui = Ui_MainWindow()
+		self.ui = omnomgui.Ui_MainWindow()
 		self.ui.setupUi(self)
 		self.setWindowTitle("Config")
 

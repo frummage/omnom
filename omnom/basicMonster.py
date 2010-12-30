@@ -1,23 +1,26 @@
 #!/usr/bin/env python
 
-#!/usr/bin/env python
-
 import pygame
 import basicSprite
 import random
 import config
 
+
+isEvil = False
+
+
 class Monster(basicSprite.Sprite):
+
 	def __init__(self, centerPoint, image, scared_image=None, evil_image=None):
 		basicSprite.Sprite.__init__(self, centerPoint, image)
 		global isEvil
 		#if test == 1:
-		isEvil = 0
+		isEvil = False
 		self.original_rect = pygame.Rect(self.rect)
 		#test = 0
 		self.normal_image = image
 		self.evil_image = evil_image
-		if scared_image !=None:
+		if scared_image is not None:
 			self.scared_image = scared_image
 		else:
 			self.scared_image = image
@@ -29,7 +32,7 @@ class Monster(basicSprite.Sprite):
 		else:
 			self.dist = config.enemy_speed
 			self.moves = random.randint(60, 120)
-		self.moveCount = 0;
+		self.moveCount = 0
 
 	def update(self, block_group):
 		xMove, yMove = 0, 0
@@ -50,7 +53,7 @@ class Monster(basicSprite.Sprite):
 		elif self.moves == self.moveCount:
 			self.direction = random.randint(1, 4)
 			self.moves = random.randint(100, 200)
-			self.moveCount = 0;
+			self.moveCount = 0
 
 	def SetScared(self, scared):
 		if self.image == self.evil_image:
@@ -68,4 +71,4 @@ class Monster(basicSprite.Sprite):
 		self.scared = False
 		self.image = self.evil_image
 		global isEvil
-		isEvil = 1
+		isEvil = True
