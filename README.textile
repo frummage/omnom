@@ -7,12 +7,14 @@ the N900 but also works on any system with the correct
 dependencies (see prerequisites)
 
 h2. Prerequisites:
+
 To run this software, you will need:
 * Python (already pre-installed)
 * Pygame
 * PyQt
 
 h2. Recommended Specs:
+
 This software is still in early development stages. In it's
 current state it runs best at about 850mhz. However, I am
 not responsible for any damage that may come to your device
@@ -46,6 +48,7 @@ cd /home/opt/python/omnom
 python nom.py
 
 h2. Game Rules:
+
 The aim of the game is to collect all the pellets in the level.
 The larger pellets put the enemies in to a state where they can be
 attacked, however attacking may not always be the best idea. When
