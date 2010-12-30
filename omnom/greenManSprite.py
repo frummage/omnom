@@ -2,6 +2,7 @@
 
 import logging
 import pygame
+import pygame.locals
 
 import basicSprite
 import config

@@ -4,6 +4,7 @@ import os
 import sys
 import logging
 import pygame
+import pygame.locals
 from PyQt4 import QtGui, QtCore
 
 import constants

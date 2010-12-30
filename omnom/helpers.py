@@ -3,6 +3,7 @@
 import os
 import logging
 import pygame
+import pygame.locals
 
 
 _moduleLogger = logging.getLogger(__name__)
