@@ -2,7 +2,8 @@ PROJECT_NAME=omnom
 SOURCE_PATH=omnom
 SOURCE=$(shell find $(SOURCE_PATH) -iname "*.py")
 PROGRAM=$(SOURCE_PATH)/$(PROJECT_NAME).py
-DATA_TYPES=*.ini *.map *.glade *.png
+DATA_TYPES=*.ini *.map *.glade *.png *.wav *.json
+DATA=$(foreach type, $(DATA_TYPES), $(shell find $(SOURCE_PATH) -iname "$(type)"))
 OBJ=$(SOURCE:.py=.pyc)
 BUILD_PATH=./build
 TAG_FILE=~/.ctags/$(PROJECT_NAME).tags
@@ -43,6 +44,7 @@ package: $(OBJ)
 	cp $(SOURCE_PATH)/constants.py  $(BUILD_PATH)/generic
 	cp $(SOURCE_PATH)/$(PROJECT_NAME).py  $(BUILD_PATH)/generic
 	$(foreach file, $(SOURCE), cp $(file) $(BUILD_PATH)/generic/$(subst /,-,$(file)) ; )
+	$(foreach file, $(DATA), cp $(file) $(BUILD_PATH)/generic/$(subst /,-,$(file)) ; )
 	cp support/$(PROJECT_NAME).desktop $(BUILD_PATH)/generic
 	cp omnom/data/images/charOpenRight.png $(BUILD_PATH)/generic/23x23-$(PROJECT_NAME).png
 	cp support/builddeb.py $(BUILD_PATH)/generic

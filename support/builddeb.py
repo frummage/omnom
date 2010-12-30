@@ -21,7 +21,8 @@ __email__ = "frummage@yahoo.co.uk"
 __version__ = constants.__version__
 __build__ = constants.__build__
 __changelog__ = """
-* Fixing mistakes epage threw in
+* Made levels more data-driven
+* Fixed some breaking packaging bugs
 """.strip()
 
 
@@ -97,7 +98,7 @@ def build_package(distribution):
 		"fremantle": "23x23-omnom.png", # Fremantle natively uses 48x48
 	}[distribution]
 	#p["/opt/%s/bin" % constants.__app_name__] = [ "%s.py" % constants.__app_name__ ]
-	for relPath, files in unflatten_files(find_files("src", ".")).iteritems():
+	for relPath, files in unflatten_files(find_files("omnom", ".")).iteritems():
 		fullPath = "/opt/%s" % constants.__app_name__
 		if relPath:
 			fullPath += os.sep+relPath
