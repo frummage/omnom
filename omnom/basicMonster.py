@@ -16,7 +16,10 @@ isEvil = False
 
 class Monster(basicSprite.Sprite):
 
-	def __init__(self, centerPoint, image, scared_image=None, evil_image=None):
+	def __init__(self, centerPoint, level):
+		image = level.sprites[level.MONSTER]
+		scared_image = level.sprites[level.SCARED_MONSTER]
+		evil_image = level.sprites[level.EVIL_MONSTER]
 		basicSprite.Sprite.__init__(self, centerPoint, image)
 		global isEvil
 		#if test == 1:

@@ -1,6 +1,5 @@
 #! /usr/bin/env python
 
-import os
 import logging
 import pygame
 import pygame.locals
@@ -10,12 +9,10 @@ _moduleLogger = logging.getLogger(__name__)
 
 
 def load_image(name, colorkey=None):
-	fullname = os.path.join('data', 'images')
-	fullname = os.path.join(fullname, name)
 	try:
-		image = pygame.image.load(fullname)
+		image = pygame.image.load(name)
 	except pygame.error, message:
-		_moduleLogger.exception("Cannot load image "+fullname)
+		_moduleLogger.exception("Cannot load image "+name)
 		raise SystemExit, message
 	image = image.convert()
 	if colorkey is not None:

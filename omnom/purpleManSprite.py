@@ -5,7 +5,6 @@ import pygame
 
 import basicSprite
 import config
-import helpers
 
 
 _moduleLogger = logging.getLogger(__name__)
@@ -25,7 +24,8 @@ killSound = None
 
 class purpleMan(basicSprite.Sprite):
 
-	def __init__(self, centerPoint, image):
+	def __init__(self, centerPoint, level):
+		image = level.sprites[level.PURPLEMAN]
 		basicSprite.Sprite.__init__(self, centerPoint, image)
 		#nom.gameMusic
 		#nom.gameSound
@@ -35,12 +35,7 @@ class purpleMan(basicSprite.Sprite):
 		config.purpleHits = 0
 		self.openclosed = 1
 		self.normal_image = self.image
-		if config.mariomode == 1:
-			self.closed, rect = helpers.load_image('luigiClosed.png', -1)
-		elif config.paper == 1:
-			self.closed, rect = helpers.load_image('purplePaperClosed.png', -1)
-		else:
-			self.closed, rect = helpers.load_image('purpleClosedRight.png', -1)
+		self.closed = level.sprites[level.PURPLEMAN_CLOSED]
 		self.rect.inflate_ip(-6, -6)
 		self.original_rect = pygame.Rect(self.rect)
 		#self.rect.center = (100, 160)
@@ -59,14 +54,9 @@ class purpleMan(basicSprite.Sprite):
 		global biteSound
 		global superSound
 		global killSound
-		if  config.mariomode == 1:
-			biteSound = pygame.mixer.Sound('data/sounds/coin.wav')
-			superSound = pygame.mixer.Sound('data/sounds/mushroom.wav')
-			killSound = pygame.mixer.Sound('data/sounds/kick.wav')
-		else:
-			biteSound = pygame.mixer.Sound('data/sounds/bite.wav')
-			superSound = pygame.mixer.Sound('data/sounds/super.wav')
-			killSound = pygame.mixer.Sound('data/sounds/kill.wav')
+		biteSound = level.biteSound
+		superSound = level.superSound
+		killSound = level.killSound
 
 	def OpenAndClose(self):
 		if self.openclosed == 1:

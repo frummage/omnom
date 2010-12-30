@@ -1,0 +1,37 @@
+{
+    "image": {
+        "monster_scared_01": "goombaScared.png", 
+        "greenMan": "mario.png", 
+        "monster_01": "goomba.png", 
+        "monster_evil_01": "goombaEvil.png", 
+        "purpleMan": "luigi.png", 
+        "pellet": "coin.png", 
+        "super_pellet": "mushroom.png", 
+        "block": "marioBlock.png",
+        "greenManClosed": "marioClosed.png", 
+        "purpleManClosed": "luigiClosed.png"
+    }, 
+	"background": [0, 0, 0],
+    "layout": [
+        "#########################", 
+        "#..........#M##*#......##", 
+        "##G#.#####........####.##", 
+        "#####.....# #########...#", 
+        "#...#.###.###..#  ###.#.#", 
+        "#.#.#.#...#  #..# #M#...#", 
+        "#.#...#.###  #.......#.##", 
+        "#.### #.#........ # #...#", 
+        "#.###M..#.#  #..# # #.#.#", 
+        "#.... .##.#M #..#M###.#.#", 
+        "#.##.#.##.###M####M##.#.#", 
+        "#.##.#....##........#...#", 
+        "#...*#####...######...*.#", 
+        "#M.#.......#........#...#", 
+        "#########################"
+    ],
+	"sound": {
+		"bite": "coin.wav",
+		"super": "mushroom.wav",
+		"kill": "kick.wav"
+	}
+}

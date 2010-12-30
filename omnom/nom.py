@@ -8,22 +8,7 @@ import pygame.locals
 from PyQt4 import QtGui, QtCore
 
 import constants
-import level001
-import level002
-import level003
-import level004
-import level005
-import level006
-import level007
-import level008
-import level009
-import level010
-import level011
-import level012
-import level013
-import level014
-import level015
-import continueScrn
+import levelloader
 import config
 import basicSprite
 import omnomgui
@@ -48,6 +33,7 @@ BLOCK_SIZE = 32
 fps = 30
 clock = pygame.time.Clock()
 levelselect = 0
+DATA_FOLDER = os.path.join(os.path.dirname(__file__), "data")
 
 
 class nomMain(object):
@@ -57,6 +43,8 @@ class nomMain(object):
 		pygame.init()
 		pygame.mouse.set_visible(False)
 		pygame.mixer.init()
+		DATA_FOLDER = os.path.join(os.path.dirname(__file__), "data")
+		self.level1 = None
 		#global gameMusic
 		#global gameSound
 		#global player_speed
@@ -80,15 +68,12 @@ class nomMain(object):
 			self.dead = 1
 			self.ShowScores()
 			nomMain().MainLoop()
-		self.LoadSprites();
+		self.LoadSprites()
 		#pygame.key.set_repeat(500, 30)
 		self.background = pygame.Surface(self.screen.get_size())
 		self.background = self.background.convert()
-		if config.paper == 1:
-			self.background.fill((180, 180, 180))
-			self.screen.fill((180, 180, 180))
-		else:
-			self.background.fill((0, 0, 0))
+		self.background.fill(self.level1.backgroundColor)
+		self.screen.fill(self.level1.backgroundColor)
 		self.block_sprites.draw(self.screen)
 		self.block_sprites.draw(self.background)
 		pygame.display.flip()
@@ -97,15 +82,11 @@ class nomMain(object):
 		#		pygame.mixer.music.stop()
 		#		pygame.mixer.music.load('data/sounds/mario.wav')
 		#		pygame.mixer.music.play(-1, 0)
-		if  config.mariomode == 1:
-			biteSound = pygame.mixer.Sound('data/sounds/coin.wav')
-			superSound = pygame.mixer.Sound('data/sounds/mushroom.wav')
-			killSound = pygame.mixer.Sound('data/sounds/kick.wav')
-		else:
-			biteSound = pygame.mixer.Sound('data/sounds/bite.wav')
-			superSound = pygame.mixer.Sound('data/sounds/super.wav')
-			killSound = pygame.mixer.Sound('data/sounds/kill.wav')
-		while 1:
+		biteSound = self.level1.biteSound
+		superSound = self.level1.superSound
+		killSound = self.level1.killSound
+
+		while True:
 			if levelselect == 100:
 				if self.greenMan.pellets == 1:
 					pygame.quit()
@@ -181,7 +162,7 @@ class nomMain(object):
 						if config.players == 2:
 							self.purpleMan.MoveKeyDown(event.key)
 					if event.key == pygame.locals.K_p:
-						pygame.image.save(self.screen, '/home/user/MyDocs/omnom/screenshot.png')
+						pygame.image.save(self.screen, os.path.expanduser('~/MyDocs/omnom/screenshot.png'))
 					if event.key == pygame.locals.K_BACKSPACE:
 						pygame.quit()
 						loadGui = sys.executable
@@ -276,9 +257,9 @@ class nomMain(object):
 		screen = pygame.display.set_mode((800, 480), pygame.locals.FULLSCREEN)
 		background = pygame.Surface(screen.get_size())
 		if config.players == 2:
-			background = pygame.image.load(os.path.join('data/images', '2pbg.png'))
+			background = pygame.image.load(os.path.join(DATA_FOLDER, 'images', '2pbg.png'))
 		else:
-			background = pygame.image.load(os.path.join('data/images', '1pbg.png'))
+			background = pygame.image.load(os.path.join(DATA_FOLDER, 'data/images', '1pbg.png'))
 		font = pygame.font.Font(None, 36)
 		if config.players == 2:
 			text = font.render("Green								Purple", 1, (255, 255, 255))
@@ -416,41 +397,9 @@ class nomMain(object):
 		self.total = 0
 		x_offset = (BLOCK_SIZE/2)
 		y_offset = (BLOCK_SIZE/2)
-		if levelselect == 1:
-			self.level1 = level001.level()
-		elif levelselect == 2:
-			self.level1 = level002.level()
-		elif levelselect == 3:
-			self.level1 = level003.level()
-		elif levelselect == 4:
-			self.level1 = level004.level()
-		elif levelselect == 5:
-			self.level1 = level005.level()
-		elif levelselect == 6:
-			self.level1 = level006.level()
-		elif levelselect == 7:
-			self.level1 = level007.level()
-		elif levelselect == 8:
-			self.level1 = level008.level()
-		elif levelselect == 9:
-			self.level1 = level009.level()
-		elif levelselect == 10:
-			self.level1 = level010.level()
-		elif levelselect == 11:
-			self.level1 = level011.level()
-		elif levelselect == 12:
-			self.level1 = level012.level()
-		elif levelselect == 13:
-			self.level1 = level013.level()
-		elif levelselect == 14:
-			self.level1 = level014.level()
-		elif levelselect == 15:
-			self.level1 = level015.level()
-		elif levelselect == 100:
-			self.level1 = continueScrn.level()
-		#level1 = level001.level()
+		self.level1 = levelloader.LevelLoader(DATA_FOLDER, os.path.join(DATA_FOLDER, "levels/level%03d.json" % (levelselect, )))
 		layout = self.level1.getLayout()
-		img_list = self.level1.getSprites()
+		img_list = self.level1.sprites
 		self.pellet_sprites = pygame.sprite.RenderUpdates()
 		self.super_pellet_sprites = pygame.sprite.RenderUpdates()
 		self.block_sprites = pygame.sprite.RenderUpdates()
@@ -463,14 +412,14 @@ class nomMain(object):
 					self.block_sprites.add(block)
 				elif layout[y][x]==self.level1.GREENMAN:
 					# hmmm...
-					self.greenMan = greenManSprite.greenMan(centerPoint, img_list[self.level1.GREENMAN]) # , img_list[level1.GREENMANLEFT] , img_list[level1.GREENMANRIGHT])
+					self.greenMan = greenManSprite.greenMan(centerPoint, self.level1)
 				elif layout[y][x]==self.level1.PELLET:
 					pellet = basicSprite.Sprite(centerPoint, img_list[self.level1.PELLET])
 					self.pellet_sprites.add(pellet)
 					self.total = self.total+1
 					#pygame.mixer.Sound('data/sounds/bite.wav')
 				elif layout[y][x]==self.level1.MONSTER:
-					monster = basicMonster.Monster(centerPoint, img_list[self.level1.MONSTER], img_list[self.level1.SCARED_MONSTER], img_list[self.level1.EVIL_MONSTER])
+					monster = basicMonster.Monster(centerPoint, self.level1)
 					self.monster_sprites.add(monster)
 					#pellet = basicSprite.Sprite(centerPoint, img_list[level1.PELLET])
 					#self.pellet_sprites.add(pellet)
@@ -480,7 +429,7 @@ class nomMain(object):
 				if config.players == 2:
 					if layout[y][x]==self.level1.PURPLEMAN:
 						# hmmm...
-						self.purpleMan = purpleManSprite.purpleMan(centerPoint, img_list[self.level1.PURPLEMAN])
+						self.purpleMan = purpleManSprite.purpleMan(centerPoint, self.level1)
 		self.greenMan_sprites = pygame.sprite.RenderUpdates(self.greenMan)
 		if config.players == 2:
 			self.purpleMan_sprites = pygame.sprite.RenderUpdates(self.purpleMan)
@@ -489,7 +438,7 @@ class nomMain(object):
 class MyForm(QtGui.QMainWindow):
 
 	def __init__(self, parent=None):
-		QtGui.QWidget.__init__(self, parent)
+		QtGui.QMainWindow.__init__(self, parent)
 		self.ui = omnomgui.Ui_GUI()
 		self.ui.setupUi(self)
 		#global gameMusic
@@ -501,10 +450,10 @@ class MyForm(QtGui.QMainWindow):
 		#player_speed = 8
 		#enemy_speed = 3
 		self.setWindowTitle("OmNomNom")
-		lvl1 = QtGui.QPixmap("/home/opt/python/omnom/data/images/lvl1.png")
-		lvl2 = QtGui.QPixmap("/home/opt/python/omnom/data/images/lvl2.png")
-		lvl3 = QtGui.QPixmap("/home/opt/python/omnom/data/images/lvl3.png")
-		lvl4 = QtGui.QPixmap("/home/opt/python/omnom/data/images/lvl4.png")
+		lvl1 = QtGui.QPixmap(os.path.join(DATA_FOLDER, "images/lvl1.png"))
+		lvl2 = QtGui.QPixmap(os.path.join(DATA_FOLDER, "images/lvl2.png"))
+		lvl3 = QtGui.QPixmap(os.path.join(DATA_FOLDER, "images/lvl3.png"))
+		lvl4 = QtGui.QPixmap(os.path.join(DATA_FOLDER, "images/lvl4.png"))
 		self.ui.lvl1Pic.setPixmap(lvl1)
 		self.ui.lvl2Pic.setPixmap(lvl2)
 		self.ui.lvl3Pic.setPixmap(lvl3)
@@ -519,22 +468,38 @@ class MyForm(QtGui.QMainWindow):
 	def doLvl1(self):
 		global levelselect
 		levelselect = 1
-		nomMain().MainLoop()
+		try:
+			nomMain().MainLoop()
+		except:
+			pygame.quit()
+			raise
 
 	def doLvl2(self):
 		global levelselect
 		levelselect = 6
-		nomMain().MainLoop()
+		try:
+			nomMain().MainLoop()
+		except:
+			pygame.quit()
+			raise
 
 	def doLvl3(self):
 		global levelselect
 		levelselect = 10
-		nomMain().MainLoop()
+		try:
+			nomMain().MainLoop()
+		except:
+			pygame.quit()
+			raise
 
 	def doLvl4(self):
 		global levelselect
 		levelselect = 14
-		nomMain().MainLoop()
+		try:
+			nomMain().MainLoop()
+		except:
+			pygame.quit()
+			raise
 
 	def doConfig(self):
 		confwindow = setConfig(self)

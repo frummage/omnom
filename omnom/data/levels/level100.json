@@ -1,0 +1,37 @@
+{
+    "image": {
+        "monster_scared_01": "monsterScared.png", 
+        "greenMan": "charOpenRight.png", 
+        "monster_01": "monster.png", 
+        "monster_evil_01": "monsterEvil.png", 
+        "purpleMan": "purpleOpenRight.png", 
+        "pellet": "no.png", 
+        "super_pellet": "yes.png", 
+        "block": "blackBlock.png",
+        "greenManClosed": "charClosedRight.png", 
+        "purpleManClosed": "purpleClosedRight.png"
+    }, 
+	"background": [0, 0, 0],
+    "layout": [
+        "#########################", 
+        "#                       #", 
+        "#                       #", 
+        "#                       #", 
+        "#                       #", 
+        "#                       #", 
+        "#                       #", 
+        "#   *       G       .   #", 
+        "#########################", 
+        "#          # #          #", 
+        "#                       #", 
+        "#                       #", 
+        "#                       #", 
+        "#                       #", 
+        "#########################"
+    ],
+	"sound": {
+		"bite": "bite.wav",
+		"super": "super.wav",
+		"kill": "kill.wav"
+	}
+}

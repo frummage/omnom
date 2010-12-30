@@ -1,0 +1,37 @@
+{
+    "image": {
+        "monster_scared_01": "paperMonsterScared.png", 
+        "greenMan": "greenPaperOpen.png", 
+        "monster_01": "paperMonster.png", 
+        "monster_evil_01": "paperMonsterEvil.png", 
+        "purpleMan": "purplePaperOpen.png", 
+        "pellet": "paperPellet.png", 
+        "super_pellet": "paperSuperPellet.png", 
+        "block": "paperBlock.png",
+        "greenManClosed": "greenPaperClosed.png", 
+        "purpleManClosed": "purplePaperClosed.png"
+    }, 
+	"background": [0, 0, 0],
+    "layout": [
+        "#########################", 
+        "#G.#*..##....#....#.##..#", 
+        "##.###.#..#.........##..#", 
+        "#..#...##.#.##.#.#..##.##", 
+        "#.##.###.......###...#.##", 
+        "#..#.##....#.........#..#", 
+        "##.#..#..###..M#M..#.##.#", 
+        "#..#..........###..#.#..#", 
+        "#.###.........M#M....#.##", 
+        "#.#M#...#..#.........#..#", 
+        "#.#....##..###..##.#.##.#", 
+        "#...##.#..*..#..#M..*#..#", 
+        "##...#....#.....#..###.##", 
+        "#.........##............#", 
+        "#########################"
+    ],
+	"sound": {
+		"bite": "bite.wav",
+		"super": "super.wav",
+		"kill": "kill.wav"
+	}
+}
