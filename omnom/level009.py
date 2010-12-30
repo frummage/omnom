@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import levelBase
 import config
 from helpers import load_image

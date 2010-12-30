@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+
+#!/usr/bin/env python
+
 import pygame
 import basicSprite
 import random

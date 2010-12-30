@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import pygame
 import basicSprite
 from helpers import *

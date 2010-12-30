@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 gameMusic = 0
 gameSound = 1
 player_speed = 8
