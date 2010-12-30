@@ -28,7 +28,7 @@ h2. Installation:
 
 h3. Maemo
 
-*WARNING: extras-devel code is not very tested, can break things, block upgrades, etc*
+*WARNING: extras-devel code is not very tested (like the grammar of this sentence), can break things, block upgrades, etc*
 
 Check it out in extras-devel
 
