@@ -23,30 +23,30 @@ class level(levelBase.Level):
 			P = 0
 		else:
 			P = 7
-		return [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],\
-			[1, 2, 0, 1, 5, 0, 0, 1, 1, 0, 0 ,0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, P, 1],\
-			[1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1 ,0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1],\
-			[1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1 ,0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 1, 1],\
-			[1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0 ,0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1, 1],\
-			[1, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0 ,1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1],\
-			[1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1 ,1, 0, 0, 3, 1, 3, 0, 0, 1, 0, 1, 1, 0, 1],\
-			[1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ,0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1],\
-			[1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0 ,0, 0, 0, 3, 1, 3, 0, 0, 0, 0, 1, 0, 1, 1],\
-			[1, 0, 1, 3, 1, 0, 0, 0, 1, 0, 0 ,1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1],\
-			[1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0 ,1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1],\
-			[1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 5 ,0, 0, 1, 0, 0, 1, 3, 0, 0, 5, 1, 0, 0, 1],\
-			[1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1 ,0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1],\
-			[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 ,1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],\
+		return [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 , 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+			[1, 2, 0, 1, 5, 0, 0, 1, 1, 0, 0 , 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, P, 1],
+			[1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1 , 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1],
+			[1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1 , 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 1, 1],
+			[1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0 , 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1, 1],
+			[1, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0 , 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1],
+			[1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1 , 1, 0, 0, 3, 1, 3, 0, 0, 1, 0, 1, 1, 0, 1],
+			[1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 , 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1],
+			[1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0 , 0, 0, 0, 3, 1, 3, 0, 0, 0, 0, 1, 0, 1, 1],
+			[1, 0, 1, 3, 1, 0, 0, 0, 1, 0, 0 , 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1],
+			[1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0 , 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1],
+			[1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 5 , 0, 0, 1, 0, 0, 1, 3, 0, 0, 5, 1, 0, 0, 1],
+			[1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1 , 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1],
+			[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 , 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
 			[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
 
 	def getSprites(self):
 		block, rect = load_image('paperBlock.png')
-		pellet, rect = load_image('paperPellet.png',-1)
-		greenMan, rect = load_image('greenPaperOpen.png',-1)
-		monster_01, rect = load_image('paperMonster.png',-1)
-		monster_scared_01, rect = load_image('paperMonsterScared.png',-1)
-		monster_evil_01, rect = load_image('paperMonsterEvil.png',-1)
-		purpleMan, rect = load_image('purplePaperOpen.png',-1)
-		super_pellet, rect = load_image('paperSuperPellet.png',-1)
-		return [pellet,block,greenMan,monster_01,monster_scared_01,super_pellet,monster_evil_01,purpleMan]
+		pellet, rect = load_image('paperPellet.png', -1)
+		greenMan, rect = load_image('greenPaperOpen.png', -1)
+		monster_01, rect = load_image('paperMonster.png', -1)
+		monster_scared_01, rect = load_image('paperMonsterScared.png', -1)
+		monster_evil_01, rect = load_image('paperMonsterEvil.png', -1)
+		purpleMan, rect = load_image('purplePaperOpen.png', -1)
+		super_pellet, rect = load_image('paperSuperPellet.png', -1)
+		return [pellet, block, greenMan, monster_01, monster_scared_01, super_pellet, monster_evil_01, purpleMan]
 
