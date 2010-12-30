@@ -86,7 +86,7 @@ class purpleMan(basicSprite.Sprite):
 			if self.hdirect == 1:
 				self.image = pygame.transform.rotate(self.image, 90)
 			if self.hdirect == 2:
-					self.image = pygame.transform.rotate(self.image, -90)
+				self.image = pygame.transform.rotate(self.image, -90)
 
 	def MoveKeyDown(self, key):
 		if (key == pygame.locals.K_x):

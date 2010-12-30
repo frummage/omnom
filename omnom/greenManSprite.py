@@ -22,6 +22,7 @@ class greenMan(basicSprite.Sprite):
 
 	def __init__(self, centerPoint, image):
 		basicSprite.Sprite.__init__(self, centerPoint, image)
+		self.current_rect = None
 		#nom.gameMusic
 		#nom.gameSound
 		#nom.player_speed

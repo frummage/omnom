@@ -9,7 +9,7 @@ import omnomgui
 class MyForm(QtGui.QMainWindow):
 
 	def __init__(self, parent=None):
-		QtGui.QWidget.__init__(self, parent)
+		QtGui.QMainWindow.__init__(self, parent)
 		self.ui = omnomgui.Ui_GUI()
 		self.ui.setupUi(self)
 		self.setWindowTitle("OmNomNom")

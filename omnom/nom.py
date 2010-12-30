@@ -22,6 +22,7 @@ import config
 import basicSprite
 from PyQt4 import QtGui, QtCore
 import omnomgui
+import nomconfig
 import greenManSprite
 import purpleManSprite
 import basicMonster
@@ -192,17 +193,17 @@ class nomMain(object):
 					or (event.key == pygame.locals.K_z)):
 						if config.players == 2:
 							self.purpleMan.MoveKeyUp(event.key)
-				elif event.type == pygame.locals.SUPER_STATE_OVER:
+				elif event.type == greenManSprite.SUPER_STATE_OVER:
 					self.greenMan.superState = False
 					if config.players == 2:
 						self.purpleMan.superState = False
-					pygame.time.set_timer(pygame.locals.SUPER_STATE_OVER, 0)
+					pygame.time.set_timer(greenManSprite.SUPER_STATE_OVER, 0)
 					for monster in self.monster_sprites.sprites():
 						monster.SetScared(False)
-				elif event.type == pygame.locals.SUPER_STATE_START:
+				elif event.type == greenManSprite.SUPER_STATE_START:
 					for monster in self.monster_sprites.sprites():
 						monster.SetScared(True)
-				elif event.type == pygame.locals.PLAYER_EATEN:
+				elif event.type == greenManSprite.PLAYER_EATEN:
 					if config.players == 2:
 						if ((self.greenMan.lives < 1)
 						and (self.purpleMan.lives < 1)):
@@ -536,7 +537,7 @@ class setConfig(QtGui.QMainWindow):
 
 	def __init__(self, *args):
 		QtGui.QMainWindow.__init__(self, args)
-		self.ui = omnomgui.Ui_MainWindow()
+		self.ui = nomconfig.Ui_MainWindow()
 		self.ui.setupUi(self)
 		self.setWindowTitle("Config")
 
