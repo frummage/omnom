@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import sys
-from PyQt4 import QtGui,QtCore
+from PyQt4 import QtGui, QtCore
 from omnomgui import *
 
 class MyForm(QtGui.QMainWindow):

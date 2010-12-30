@@ -25,12 +25,12 @@ class purpleMan(basicSprite.Sprite):
 		self.openclosed = 1
 		self.normal_image = self.image
 		if config.mariomode == 1:
-			self.closed, rect = load_image('luigiClosed.png',-1)
+			self.closed, rect = load_image('luigiClosed.png', -1)
 		elif config.paper == 1:
-			self.closed, rect = load_image('purplePaperClosed.png',-1)
+			self.closed, rect = load_image('purplePaperClosed.png', -1)
 		else:
-			self.closed, rect = load_image('purpleClosedRight.png',-1)
-		self.rect.inflate_ip(-6,-6)
+			self.closed, rect = load_image('purpleClosedRight.png', -1)
+		self.rect.inflate_ip(-6, -6)
 		self.original_rect = pygame.Rect(self.rect)
 		#self.rect.center = (100, 160)
 		self.lives = config.lives
@@ -140,9 +140,9 @@ class purpleMan(basicSprite.Sprite):
 				self.MonsterCollide(lst_monsters)
 			else:
 				return
-		self.rect.move_ip(self.xMove,self.yMove)
+		self.rect.move_ip(self.xMove, self.yMove)
 		if pygame.sprite.spritecollideany(self, block_group):
-			self.rect.move_ip(-self.xMove,-self.yMove)
+			self.rect.move_ip(-self.xMove, -self.yMove)
 		lst_monsters = pygame.sprite.spritecollide(self, monster_group, False)
 		if (len(lst_monsters)>0):
 			self.MonsterCollide(lst_monsters)
@@ -155,18 +155,18 @@ class purpleMan(basicSprite.Sprite):
 				#Sound.stop()
 				self.OpenAndClose()
 				if config.gameSound == 1:
-					#pygame.event.post(pygame.event.Event(BITE,{}))
+					#pygame.event.post(pygame.event.Event(BITE, {}))
 					biteSound.play(loops=0, maxtime=0, fade_ms=0)
-			elif (len(pygame.sprite.spritecollide(self,super_pellet_group, True))>0):
+			elif (len(pygame.sprite.spritecollide(self, super_pellet_group, True))>0):
 				self.superState = True
 				if config.gameSound == 1:
 					global superSound
 					#Sound.stop()
-					#pygame.event.post(pygame.event.Event(SUPER,{}))
+					#pygame.event.post(pygame.event.Event(SUPER, {}))
 					superSound.play(loops=0, maxtime=0, fade_ms=0)
-				pygame.event.post(pygame.event.Event(SUPER_STATE_START,{}))
-				pygame.time.set_timer(SUPER_STATE_OVER,0)
-				pygame.time.set_timer(SUPER_STATE_OVER,8000)
+				pygame.event.post(pygame.event.Event(SUPER_STATE_START, {}))
+				pygame.time.set_timer(SUPER_STATE_OVER, 0)
+				pygame.time.set_timer(SUPER_STATE_OVER, 8000)
 
 	def MonsterCollide(self, lstMonsters):
 		if(len(lstMonsters)<=0):
@@ -178,7 +178,7 @@ class purpleMan(basicSprite.Sprite):
 				config.purpleHits = config.purpleHits+1
 				if config.gameSound == 1:
 					#killSound.stop()
-					#pygame.event.post(pygame.event.Event(KILL,{}))
+					#pygame.event.post(pygame.event.Event(KILL, {}))
 					killSound.play(loops=0, maxtime=0, fade_ms=0)
 			else:
 				self.lives = self.lives-1
@@ -189,6 +189,6 @@ class purpleMan(basicSprite.Sprite):
 						self.rect = self.rect.move(-800, -800)
 				if config.gameSound == 1:
 					#killSound.stop()
-					#pygame.event.post(pygame.event.Event(KILL,{}))
+					#pygame.event.post(pygame.event.Event(KILL, {}))
 					killSound.play(loops=0, maxtime=0, fade_ms=0)
-				pygame.event.post(pygame.event.Event(PLAYER_EATEN,{}))
+				pygame.event.post(pygame.event.Event(PLAYER_EATEN, {}))

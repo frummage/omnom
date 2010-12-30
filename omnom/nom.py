@@ -20,7 +20,7 @@ import level015
 import continueScrn
 import config
 import basicSprite
-from PyQt4 import QtGui,QtCore
+from PyQt4 import QtGui, QtCore
 from omnomgui import *
 from nomconfig import *
 from pygame.locals import *
@@ -42,7 +42,7 @@ clock = pygame.time.Clock()
 levelselect = 0
 
 class nomMain():
-	def __init__(self , width=800,height=480):
+	def __init__(self , width=800, height=480):
 		pygame.mixer.pre_init(44100, -16, 1, 256)
 		pygame.init()
 		pygame.mouse.set_visible(False)
@@ -75,10 +75,10 @@ class nomMain():
 		self.background = pygame.Surface(self.screen.get_size())
 		self.background = self.background.convert()
 		if config.paper == 1:
-			self.background.fill((180,180,180))
-			self.screen.fill((180,180,180))
+			self.background.fill((180, 180, 180))
+			self.screen.fill((180, 180, 180))
 		else:
-			self.background.fill((0,0,0))
+			self.background.fill((0, 0, 0))
 		self.block_sprites.draw(self.screen)
 		self.block_sprites.draw(self.background)
 		pygame.display.flip()
@@ -154,7 +154,7 @@ class nomMain():
 			self.greenMan_sprites.clear(self.screen, self.background)
 			if config.players == 2:
 				self.purpleMan_sprites.clear(self.screen, self.background)
-			self.monster_sprites.clear(self.screen,self.background)
+			self.monster_sprites.clear(self.screen, self.background)
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
 					sys.exit()
@@ -195,7 +195,7 @@ class nomMain():
 					self.greenMan.superState = False
 					if config.players == 2:
 						self.purpleMan.superState = False
-					pygame.time.set_timer(SUPER_STATE_OVER,0)
+					pygame.time.set_timer(SUPER_STATE_OVER, 0)
 					for monster in self.monster_sprites.sprites():
 						monster.SetScared(False)
 				elif event.type == SUPER_STATE_START:
@@ -447,13 +447,13 @@ class nomMain():
 		self.monster_sprites = pygame.sprite.RenderUpdates()
 		for y in xrange(len(layout)):
 			for x in xrange(len(layout[y])):
-				centerPoint = [(x*BLOCK_SIZE)+x_offset,(y*BLOCK_SIZE+y_offset)]
+				centerPoint = [(x*BLOCK_SIZE)+x_offset, (y*BLOCK_SIZE+y_offset)]
 				if layout[y][x]==self.level1.BLOCK:
 					block = basicSprite.Sprite(centerPoint, img_list[self.level1.BLOCK])
 					self.block_sprites.add(block)
 				elif layout[y][x]==self.level1.GREENMAN:
 					# hmmm...
-					self.greenMan = greenMan(centerPoint,img_list[self.level1.GREENMAN]) # , img_list[level1.GREENMANLEFT] , img_list[level1.GREENMANRIGHT])
+					self.greenMan = greenMan(centerPoint, img_list[self.level1.GREENMAN]) # , img_list[level1.GREENMANLEFT] , img_list[level1.GREENMANRIGHT])
 				elif layout[y][x]==self.level1.PELLET:
 					pellet = basicSprite.Sprite(centerPoint, img_list[self.level1.PELLET])
 					self.pellet_sprites.add(pellet)
@@ -470,7 +470,7 @@ class nomMain():
 				if config.players == 2:
 					if layout[y][x]==self.level1.PURPLEMAN:
 						# hmmm...
-						self.purpleMan = purpleMan(centerPoint,img_list[self.level1.PURPLEMAN])
+						self.purpleMan = purpleMan(centerPoint, img_list[self.level1.PURPLEMAN])
 		self.greenMan_sprites = pygame.sprite.RenderUpdates(self.greenMan)
 		if config.players == 2:
 			self.purpleMan_sprites = pygame.sprite.RenderUpdates(self.purpleMan)

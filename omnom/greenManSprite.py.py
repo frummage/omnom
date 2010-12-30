@@ -41,9 +41,9 @@ class greenMan(basicSprite.Sprite):
 	def update(self, block_group, pellet_group, super_pellet_group, monster_group):
 		if (self.xMove==0)and(self.yMove==0):
 			return
-		self.rect.move_ip(self.xMove,self.yMove)
+		self.rect.move_ip(self.xMove, self.yMove)
 		if pygame.sprite.spritecollideany(self, block_group):
-			self.rect.move_ip(-self.xMove,-self.yMove)
+			self.rect.move_ip(-self.xMove, -self.yMove)
 		lst_monsters = pygame.sprite.spritecollide(self, monster_group, False)
 		if (len(lst_monsters)>0):
 			self.MonsterCollide(lst_monsters)
@@ -51,11 +51,11 @@ class greenMan(basicSprite.Sprite):
 			lstCols = pygame.sprite.spritecollide(self, pellet_group, True)
 			if (len(lstCols)>0):
 				self.pellets += len(lstCols)
-			elif (len(pygame.sprite.spritecollide(self,super_pellet_group, True))>0):
+			elif (len(pygame.sprite.spritecollide(self, super_pellet_group, True))>0):
 				self.superState = True
-				pygame.event.post(pygame.event.Event(SUPER_STATE_START,{}))
-				pygame.time.set_timer(SUPER_STATE_OVER,0)
-				pygame.time.set_timer(SUPER_STATE_OVER,8000)
+				pygame.event.post(pygame.event.Event(SUPER_STATE_START, {}))
+				pygame.time.set_timer(SUPER_STATE_OVER, 0)
+				pygame.time.set_timer(SUPER_STATE_OVER, 8000)
 
 	def MonsterCollide(self, lstMonsters):
 		if(len(lstMonsters)<=0):
@@ -64,4 +64,4 @@ class greenMan(basicSprite.Sprite):
 			if (monster.scared):
 				monster.Eaten()
 			else:
-				pygame.event.post(pygame.event.Event(PLAYER_EATEN,{}))
+				pygame.event.post(pygame.event.Event(PLAYER_EATEN, {}))
