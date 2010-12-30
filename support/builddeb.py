@@ -21,7 +21,7 @@ __email__ = "frummage@yahoo.co.uk"
 __version__ = constants.__version__
 __build__ = constants.__build__
 __changelog__ = """
-* Fixing dependencies
+* Fixing mistakes epage threw in
 """.strip()
 
 
